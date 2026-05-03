@@ -5,11 +5,7 @@ sys.path.insert(0, PROJECT)
 from build_db import ensure_db
 ensure_db()
 
-"""
-SmartRetail360 — Home Dashboard
-File: app/Home.py
-Run: streamlit run app/Home.py
-"""
+
 
 import os, sys, sqlite3, json, pickle, warnings
 import pandas as pd
@@ -90,7 +86,7 @@ def load_data():
 
     # Fix date columns — use the actual column names in your DB
     df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"], errors="coerce")
-    daily["date"]     = pd.to_datetime(daily["date"], errors="coerce")
+    daily["Date"]     = pd.to_datetime(daily["Date"], errors="coerce")
 
     return df, rfm, products, daily, cat_rev, ot_rev
 
@@ -211,11 +207,11 @@ daily_filtered = dff.groupby(dff["InvoiceDate"].dt.date).agg(
     revenue=("line_revenue", "sum"),
     profit =("profit",       "sum"),
     orders =("OrderID",      "nunique"),
-).reset_index().rename(columns={"InvoiceDate": "date"})
-daily_filtered["date"] = pd.to_datetime(daily_filtered["date"])
+).reset_index().rename(columns={"InvoiceDate": "Date"})
+daily_filtered["Date"] = pd.to_datetime(daily_filtered["Date"])
 
 fig_rev = px.area(
-    daily_filtered, x="date", y="revenue",
+    daily_filtered, x="Date", y="Revenue (£)",
     title="Daily Revenue (£)",
     color_discrete_sequence=["#E87040"],
     template="plotly_dark",

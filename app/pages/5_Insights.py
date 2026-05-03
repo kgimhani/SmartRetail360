@@ -5,10 +5,7 @@ sys.path.insert(0, PROJECT)
 from build_db import ensure_db
 ensure_db()
 
-"""
-SmartRetail360 — ML Insights Page
-File: app/pages/5_Insights.py
-"""
+
 
 import os, sys, sqlite3, json, pickle, warnings
 import pandas as pd
@@ -125,13 +122,13 @@ else:
 st.markdown('<p class="section-header">📊 Key Business Insights</p>', unsafe_allow_html=True)
 
 # Best day of week
-if "day_of_week" in daily.columns and "revenue" in daily.columns:
+if "Day of Week" in daily.columns and "revenue" in daily.columns:
     days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-    dow  = daily.groupby("day_of_week")["revenue"].mean().reset_index()
-    best_day_idx = int(dow.loc[dow["revenue"].idxmax(), "day_of_week"])
+    dow  = daily.groupby("Day of Week")["revenue"].mean().reset_index()
+    best_day_idx = int(dow.loc[dow["revenue"].idxmax(), "Day of Week"])
     best_day     = days[best_day_idx] if best_day_idx < 7 else str(best_day_idx)
     best_day_rev = dow["revenue"].max()
-    worst_day_idx= int(dow.loc[dow["revenue"].idxmin(), "day_of_week"])
+    worst_day_idx= int(dow.loc[dow["revenue"].idxmin(), "Day of Week"])
     worst_day    = days[worst_day_idx] if worst_day_idx < 7 else str(worst_day_idx)
 else:
     best_day = "N/A"; best_day_rev = 0; worst_day = "N/A"

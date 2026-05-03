@@ -5,10 +5,7 @@ sys.path.insert(0, PROJECT)
 from build_db import ensure_db
 ensure_db()
 
-"""
-SmartRetail360 — Product Analysis Page
-File: app/pages/2_Products.py
-"""
+
 
 import os, sys, sqlite3, warnings
 import pandas as pd
@@ -80,7 +77,7 @@ st.markdown('<p class="section-header">🗺️ Category Revenue Treemap</p>', un
 fig_tree = px.treemap(
     prods, path=["Category", "Description"],
     values="total_revenue",
-    color="total_profit",
+    color="Total Profit (£)",
     color_continuous_scale="Oranges",
     template="plotly_dark",
 )
@@ -98,7 +95,7 @@ with col1:
     st.markdown('<p class="section-header">🏆 Top 15 Items by Revenue</p>', unsafe_allow_html=True)
     top15 = prods.nlargest(15, "total_revenue")
     fig_top = px.bar(top15, x="total_revenue", y="Description",
-                      orientation="h", color="total_profit",
+                      orientation="h", color="Total Profit (£)",
                       color_continuous_scale="Oranges",
                       template="plotly_dark",
                       labels={"total_revenue": "Revenue (£)", "Description": ""})
@@ -110,12 +107,12 @@ with col1:
 
 with col2:
     st.markdown('<p class="section-header">📦 Top 15 Items by Quantity Sold</p>', unsafe_allow_html=True)
-    top15q = prods.nlargest(15, "total_qty")
-    fig_qty = px.bar(top15q, x="total_qty", y="Description",
-                      orientation="h", color="total_qty",
+    top15q = prods.nlargest(15, "Qty Sold")
+    fig_qty = px.bar(top15q, x="Qty Sold", y="Description",
+                      orientation="h", color="Qty Sold",
                       color_continuous_scale="Blues",
                       template="plotly_dark",
-                      labels={"total_qty": "Quantity Sold", "Description": ""})
+                      labels={"Qty Sold": "Quantity Sold", "Description": ""})
     fig_qty.update_layout(
         plot_bgcolor="#0e0e1a", paper_bgcolor="#0e0e1a",
         font_color="#ccc", yaxis=dict(autorange="reversed"),
@@ -125,12 +122,12 @@ with col2:
 # Profitability scatter
 st.markdown('<p class="section-header">💰 Revenue vs Profit (All Items)</p>', unsafe_allow_html=True)
 fig_scatter = px.scatter(
-    prods, x="total_revenue", y="total_profit",
-    color="Category", size="total_qty",
+    prods, x="total_revenue", y="Total Profit (£)",
+    color="Category", size="Qty Sold",
     hover_data=["Description"],
     template="plotly_dark",
     color_discrete_sequence=px.colors.qualitative.Vivid,
-    labels={"total_revenue": "Revenue (£)", "total_profit": "Profit (£)"},
+    labels={"total_revenue": "Revenue (£)", "Total Profit (£)": "Profit (£)"},
 )
 fig_scatter.update_layout(
     plot_bgcolor="#0e0e1a", paper_bgcolor="#0e0e1a",
@@ -182,12 +179,12 @@ with col_b:
 st.markdown('<p class="section-header">📋 All Products Table</p>', unsafe_allow_html=True)
 prods_display = prods.copy().sort_values("total_revenue", ascending=False)
 prods_display["total_revenue"] = prods_display["total_revenue"].map("£{:,.2f}".format)
-prods_display["total_profit"]  = prods_display["total_profit"].map("£{:,.2f}".format)
+prods_display["Total Profit (£)"]  = prods_display["Total Profit (£)"].map("£{:,.2f}".format)
 prods_display["avg_price"]     = prods_display["avg_price"].map("£{:.2f}".format)
 prods_display = prods_display.rename(columns={
     "Description":"Item","Category":"Category",
-    "total_revenue":"Revenue","total_profit":"Profit",
-    "total_qty":"Qty","n_orders":"Orders","avg_price":"Avg Price"
+    "total_revenue":"Revenue","Total Profit (£)":"Profit",
+    "Qty Sold":"Qty","n_orders":"Orders","avg_price":"Avg Price"
 })
 st.dataframe(prods_display[["Item","Category","Revenue","Profit","Qty","Orders","Avg Price"]],
              use_container_width=True, hide_index=True)

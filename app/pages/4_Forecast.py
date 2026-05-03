@@ -5,10 +5,7 @@ sys.path.insert(0, PROJECT)
 from build_db import ensure_db
 ensure_db()
 
-"""
-SmartRetail360 — Forecast Page
-File: app/pages/4_Forecast.py
-"""
+
 
 import os, sys, sqlite3, json, pickle, warnings
 import pandas as pd

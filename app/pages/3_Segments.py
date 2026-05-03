@@ -5,10 +5,7 @@ sys.path.insert(0, PROJECT)
 from build_db import ensure_db
 ensure_db()
 
-"""
-SmartRetail360 — RFM Segments Page
-File: app/pages/3_Segments.py
-"""
+
 
 import os, sys, sqlite3, warnings
 import pandas as pd
@@ -98,7 +95,7 @@ st.plotly_chart(fig_seg, use_container_width=True)
 # Segment stats
 st.markdown('<p class="section-header">📋 Segment Summary</p>', unsafe_allow_html=True)
 seg_stats = rfm.groupby("Segment").agg(
-    Orders     = ("OrderID",   "count"),
+    Orders     = ("OrderID",   "Number of Orders"),
     Avg_Value  = ("Monetary",  "mean"),
     Total_Rev  = ("Monetary",  "sum"),
     Avg_Items  = ("Frequency", "mean"),
@@ -147,7 +144,7 @@ with col1:
     fig_hist = px.histogram(rfm, x="RFM_Total", nbins=13,
                              color_discrete_sequence=["#E87040"],
                              template="plotly_dark",
-                             labels={"RFM_Total":"RFM Total Score","count":"Orders"})
+                             labels={"RFM_Total":"RFM Total Score","Number of Orders":"Orders"})
     fig_hist.update_layout(plot_bgcolor="#0e0e1a", paper_bgcolor="#0e0e1a",
                             font_color="#ccc", margin=dict(l=10,r=10,t=10,b=10), height=300)
     st.plotly_chart(fig_hist, use_container_width=True)
@@ -167,7 +164,7 @@ st.markdown('<p class="section-header">📅 Order Recency Distribution</p>', uns
 fig_rec = px.histogram(rfm, x="Recency", nbins=50,
                         color_discrete_sequence=["#378ADD"],
                         template="plotly_dark",
-                        labels={"Recency":"Days Since Order","count":"Orders"})
+                        labels={"Recency":"Days Since Order","Number of Orders":"Orders"})
 fig_rec.update_layout(plot_bgcolor="#0e0e1a", paper_bgcolor="#0e0e1a",
                        font_color="#ccc", margin=dict(l=10,r=10,t=10,b=10), height=300)
 st.plotly_chart(fig_rec, use_container_width=True)

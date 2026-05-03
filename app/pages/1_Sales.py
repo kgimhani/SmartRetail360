@@ -5,10 +5,7 @@ sys.path.insert(0, PROJECT)
 from build_db import ensure_db
 ensure_db()
 
-"""
-SmartRetail360 — Sales Analytics Page
-File: app/pages/1_Sales.py
-"""
+
 
 import os, sys, sqlite3, warnings
 import pandas as pd
