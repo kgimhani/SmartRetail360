@@ -213,7 +213,8 @@ daily_filtered = dff.groupby(dff["InvoiceDate"].dt.date).agg(
 daily_filtered["Date"] = pd.to_datetime(daily_filtered["Date"])
 
 fig_rev = px.area(
-    daily_filtered, x="Date", y="Revenue (£)",
+    daily_filtered, x="date", y="revenue",
+    labels={"date": "Date", "revenue": "Revenue (£)"},
     title="Daily Revenue (£)",
     color_discrete_sequence=["#E87040"],
     template="plotly_dark",
