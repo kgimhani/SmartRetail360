@@ -83,9 +83,8 @@ if model is None:
 # Model stats
 c1, c2, c3 = st.columns(3)
 avg_rev = daily["revenue"].mean()
-accuracy = max(0, 100 - (meta.get("mae", 0) / avg_rev * 100))
-c1.metric("Forecast Accuracy", f"{accuracy:.1f}%", help="Model accuracy on test data")
-c2.metric("Avg Daily Revenue", f"£{avg_rev:,.0f}", help="Average daily revenue in dataset")
+c1.metric("Avg Daily Revenue", f"£{avg_rev:,.0f}", help="Average daily revenue")
+c2.metric("Forecast Horizon", "30 Days", help="Days forecasted ahead")
 c3.metric("Training Days", f"{len(daily):,}", help="Days used to train model")
 
 st.markdown("")
