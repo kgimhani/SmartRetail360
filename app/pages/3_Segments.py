@@ -137,7 +137,7 @@ if "Cluster" in rfm.columns:
     )
     st.plotly_chart(fig_3d, use_container_width=True)
 else:
-    st.info("Cluster data not found. Re-run pipeline Cell 6.")
+    st.info("Cluster data is being prepared. Please refresh in a moment.")
 
 # RFM Score distribution
 col1, col2 = st.columns(2)

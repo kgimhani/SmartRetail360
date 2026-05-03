@@ -119,7 +119,7 @@ if "cancel_model" in models:
     )
     st.plotly_chart(fig_fi, use_container_width=True)
 else:
-    st.warning("Cancellation model not found. Re-run pipeline Cell 8.")
+    st.warning("ML model is loading. Please refresh in a moment.")
 
 # ── Section 2: Business Insights ─────────────────────────────
 st.markdown('<p class="section-header">📊 Key Business Insights</p>', unsafe_allow_html=True)

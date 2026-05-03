@@ -77,7 +77,7 @@ st.markdown("*GradientBoosting model trained on historical daily revenue*")
 st.markdown("---")
 
 if model is None:
-    st.error("❌ Forecast model not found. Run pipeline Cell 7 first.")
+    st.warning("⚠️ Forecast model is loading. Please wait and refresh.")
     st.stop()
 
 # Model stats
