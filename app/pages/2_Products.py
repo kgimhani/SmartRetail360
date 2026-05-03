@@ -1,3 +1,10 @@
+import os, sys
+PROJECT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+DB_PATH = os.path.join(PROJECT, "data", "smartretail.db")
+sys.path.insert(0, PROJECT)
+from build_db import ensure_db
+ensure_db()
+
 """
 SmartRetail360 — Product Analysis Page
 File: app/pages/2_Products.py
@@ -10,8 +17,6 @@ import plotly.express as px
 
 warnings.filterwarnings("ignore")
 
-PROJECT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DB_PATH = os.path.join(PROJECT, "data", "smartretail.db")
 
 st.set_page_config(page_title="Product Analysis | SmartRetail360",
                    page_icon="🍕", layout="wide")

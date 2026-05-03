@@ -1,3 +1,10 @@
+import os, sys
+PROJECT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+DB_PATH = os.path.join(PROJECT, "data", "smartretail.db")
+sys.path.insert(0, PROJECT)
+from build_db import ensure_db
+ensure_db()
+
 """
 SmartRetail360 — Forecast Page
 File: app/pages/4_Forecast.py
@@ -13,8 +20,6 @@ from datetime import timedelta
 
 warnings.filterwarnings("ignore")
 
-PROJECT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DB_PATH = os.path.join(PROJECT, "data", "smartretail.db")
 
 st.set_page_config(page_title="Revenue Forecast | SmartRetail360",
                    page_icon="🔮", layout="wide")

@@ -1,3 +1,10 @@
+import os, sys
+PROJECT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+DB_PATH = os.path.join(PROJECT, "data", "smartretail.db")
+sys.path.insert(0, PROJECT)
+from build_db import ensure_db
+ensure_db()
+
 """
 SmartRetail360 — ML Insights Page
 File: app/pages/5_Insights.py
@@ -12,8 +19,6 @@ import plotly.graph_objects as go
 
 warnings.filterwarnings("ignore")
 
-PROJECT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DB_PATH = os.path.join(PROJECT, "data", "smartretail.db")
 
 st.set_page_config(page_title="ML Insights | SmartRetail360",
                    page_icon="💡", layout="wide")
