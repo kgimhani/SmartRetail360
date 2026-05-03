@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SmartRetail360 — Complete Setup Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0e0e1a;
+    color: #e0e0e0;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.7;
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    color: #E87040;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .subtitle { text-align: center; color: #888; margin-bottom: 2.5rem; }
+  .step {
+    background: #1a1a2e;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid #E87040;
+  }
+  .step-num {
+    display: inline-block;
+    background: #E87040;
+    color: white;
+    font-weight: 700;
+    border-radius: 50%;
+    width: 2rem; height: 2rem;
+    text-align: center;
+    line-height: 2rem;
+    margin-right: 0.8rem;
+    font-size: 0.9rem;
+  }
+  .step h2 {
+    display: inline;
+    font-size: 1.2rem;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+  }
+  .step p, .step li { color: #ccc; margin-top: 0.7rem; font-size: 0.95rem; }
+  .step ul { padding-left: 1.5rem; }
+  pre {
+    background: #0a0a15;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin-top: 0.8rem;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #7ee787;
+  }
+  .warning {
+    background: #2a1a0e;
+    border-left: 4px solid #F0A500;
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    margin-top: 0.8rem;
+    color: #F0C27F;
+    font-size: 0.9rem;
+  }
+  .success {
+    background: #0e2a1a;
+    border-left: 4px solid #1D9E75;
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    margin-top: 0.8rem;
+    color: #7FEFB8;
+    font-size: 0.9rem;
+  }
+  .file-tree {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #7ee787;
+    background: #0a0a15;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 0.8rem;
+    line-height: 1.8;
+  }
+  hr { border: none; border-top: 1px solid #333; margin: 2rem 0; }
+</style>
+</head>
+<body>
+
+<h1>🍽️ SmartRetail360</h1>
+<p class="subtitle">Complete Setup Guide — Restaurant Analytics Dashboard</p>
+
+<div class="step">
+  <span class="step-num">1</span><h2>Install Required Libraries</h2>
+  <p>Open <b>Terminal</b> on your Mac and run this one command:</p>
+  <pre>pip install streamlit pandas numpy scikit-learn plotly matplotlib seaborn nltk openpyxl</pre>
+  <p>Wait for it to finish (2-5 minutes). You'll see "Successfully installed..." when done.</p>
+</div>
+
+<div class="step">
+  <span class="step-num">2</span><h2>Create Folder Structure</h2>
+  <p>In Terminal, run these commands one by one:</p>
+  <pre>cd /Users/komudigimhani/Desktop/SmartRetail360
+mkdir -p data/raw data/processed models reports app/pages</pre>
+  <p>Then copy your dataset into the right place:</p>
+  <pre>cp ~/Desktop/Anonymized_Restaurant_Sales_Data.csv data/raw/</pre>
+  <p class="warning">⚠️ Or drag the file manually in Finder to:<br>
+  <code>/Users/komudigimhani/Desktop/SmartRetail360/data/raw/Anonymized_Restaurant_Sales_Data.csv</code></p>
+</div>
+
+<div class="step">
+  <span class="step-num">3</span><h2>Copy All Project Files</h2>
+  <p>You received a ZIP file with all project files. Copy them like this:</p>
+  <div class="file-tree">
+SmartRetail360/
+├── pipeline.py              ← Run this in Jupyter
+├── requirements.txt
+├── data/
+│   └── raw/
+│       └── Anonymized_Restaurant_Sales_Data.csv  ← YOUR DATASET
+└── app/
+    ├── Home.py              ← Main dashboard
+    └── pages/
+        ├── 1_Sales.py
+        ├── 2_Products.py
+        ├── 3_Segments.py
+        ├── 4_Forecast.py
+        └── 5_Insights.py
+  </div>
+</div>
+
+<div class="step">
+  <span class="step-num">4</span><h2>Run the Pipeline in Jupyter Notebook</h2>
+  <p>In Terminal:</p>
+  <pre>cd /Users/komudigimhani/Desktop/SmartRetail360
+jupyter notebook</pre>
+  <p>This opens Jupyter in your browser. Then:</p>
+  <ul>
+    <li>Click <b>New → Python 3</b> (top right)</li>
+    <li>Copy the contents of <code>pipeline.py</code> into the notebook</li>
+    <li>Split into cells at each <code># CELL N</code> comment using <b>Ctrl+Shift+-</b></li>
+    <li>Run each cell with <b>Shift+Enter</b></li>
+    <li>Wait for ✅ before running the next cell</li>
+    <li>Cell 2 (loading data) is fast — your CSV loads in seconds</li>
+  </ul>
+  <div class="warning">⚠️ Run ALL 12 cells top to bottom. Do not skip any.</div>
+</div>
+
+<div class="step">
+  <span class="step-num">5</span><h2>Verify All Files Were Created</h2>
+  <p>After Cell 12 runs, you should see all ✅ green checkmarks. Verify in Terminal:</p>
+  <pre>ls /Users/komudigimhani/Desktop/SmartRetail360/models/
+ls /Users/komudigimhani/Desktop/SmartRetail360/data/</pre>
+  <p>You should see:</p>
+  <div class="file-tree">
+models/
+  kmeans_model.pkl
+  rfm_scaler.pkl
+  forecast_model.pkl
+  forecast_features.json
+  forecast_meta.json
+  cancel_model.pkl
+  cancel_scaler.pkl
+  cancel_features.json
+  cancel_meta.json
+
+data/
+  smartretail.db          ← The main database
+  processed/
+    daily_timeseries.csv
+    product_sentiment.csv
+  </div>
+</div>
+
+<div class="step">
+  <span class="step-num">6</span><h2>Launch the Dashboard</h2>
+  <p>Open a <b>NEW Terminal window</b> (don't use the Jupyter one) and run:</p>
+  <pre>cd /Users/komudigimhani/Desktop/SmartRetail360
+streamlit run app/Home.py</pre>
+  <p>Your browser will automatically open at <b>http://localhost:8501</b></p>
+  <div class="success">✅ Dashboard is working! You'll see the 🍽️ SmartRetail360 header with all metrics.</div>
+</div>
+
+<div class="step">
+  <span class="step-num">7</span><h2>Navigating the Dashboard</h2>
+  <ul>
+    <li>🏠 <b>Home</b> — KPIs, revenue trend, category charts, heatmap, top items</li>
+    <li>📈 <b>Sales Analytics</b> — Monthly trends, day/hour analysis, delivery vs collection</li>
+    <li>🍕 <b>Product Analysis</b> — Treemap, top items, profitability scatter, sentiment</li>
+    <li>👥 <b>RFM Segments</b> — Order segments, 3D scatter, distributions</li>
+    <li>🔮 <b>Forecast</b> — 30-day revenue forecast with slider</li>
+    <li>💡 <b>ML Insights</b> — Cancellation model, business insights, profit analysis</li>
+  </ul>
+  <p>Use the <b>sidebar filters</b> on any page to filter by date range, order type, and category.</p>
+</div>
+
+<hr>
+
+<div class="step">
+  <span class="step-num">❗</span><h2>Troubleshooting Common Errors</h2>
+  <p><b>Error: "Module not found"</b></p>
+  <pre>pip install [module_name]</pre>
+  <p><b>Error: "Database not found"</b></p>
+  <p>You haven't run the pipeline yet, or didn't complete all cells. Go back to Step 4.</p>
+  <p><b>Error: "No such file: Anonymized_Restaurant_Sales_Data.csv"</b></p>
+  <p>Make sure the CSV is in: <code>data/raw/Anonymized_Restaurant_Sales_Data.csv</code></p>
+  <p><b>Dashboard won't start</b></p>
+  <pre>cd /Users/komudigimhani/Desktop/SmartRetail360
+streamlit run app/Home.py</pre>
+  <p>Make sure you are IN the SmartRetail360 folder before running streamlit.</p>
+  <p><b>Port already in use</b></p>
+  <pre>streamlit run app/Home.py --server.port 8502</pre>
+</div>
+
+</body>
+</html>
