@@ -14,15 +14,13 @@ from datetime import datetime, timedelta
 
 warnings.filterwarnings("ignore")
 
-# Auto-build DB from CSV if missing
+# ── Project path ──────────────────────────────────────────────
+PROJECT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DB_PATH = os.path.join(PROJECT, "data", "smartretail.db")
 import sys
 sys.path.insert(0, PROJECT)
 from build_db import ensure_db
 ensure_db()
-
-# ── Project path ──────────────────────────────────────────────
-PROJECT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DB_PATH = os.path.join(PROJECT, "data", "smartretail.db")
 sys.path.insert(0, PROJECT)
 
 # ── Page config ───────────────────────────────────────────────
