@@ -14,8 +14,14 @@ from datetime import datetime, timedelta
 
 warnings.filterwarnings("ignore")
 
+# Auto-build DB from CSV if missing
+import sys
+sys.path.insert(0, PROJECT)
+from build_db import ensure_db
+ensure_db()
+
 # ── Project path ──────────────────────────────────────────────
-PROJECT = "/Users/komudigimhani/Desktop/SmartRetail360"
+PROJECT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH = os.path.join(PROJECT, "data", "smartretail.db")
 sys.path.insert(0, PROJECT)
 
@@ -92,14 +98,7 @@ def load_data():
 
 
 # ── Check DB exists ───────────────────────────────────────────
-if not os.path.exists(DB_PATH):
-    st.error(f"""
-    ❌ Database not found at: `{DB_PATH}`
 
-    Please run the pipeline notebook first (all cells top to bottom),
-    then refresh this page.
-    """)
-    st.stop()
 
 # ── Load ──────────────────────────────────────────────────────
 try:

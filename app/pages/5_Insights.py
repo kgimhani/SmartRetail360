@@ -12,7 +12,7 @@ import plotly.graph_objects as go
 
 warnings.filterwarnings("ignore")
 
-PROJECT = "/Users/komudigimhani/Desktop/SmartRetail360"
+PROJECT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DB_PATH = os.path.join(PROJECT, "data", "smartretail.db")
 
 st.set_page_config(page_title="ML Insights | SmartRetail360",
