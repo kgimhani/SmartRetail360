@@ -97,7 +97,7 @@ st.plotly_chart(fig_seg, use_container_width=True)
 # Segment stats
 st.markdown('<p class="section-header">📋 Segment Summary</p>', unsafe_allow_html=True)
 seg_stats = rfm.groupby("Segment").agg(
-    Orders     = ("OrderID",   "Number of Orders"),
+    Orders     = ("OrderID",   "nunique"),
     Avg_Value  = ("Monetary",  "mean"),
     Total_Rev  = ("Monetary",  "sum"),
     Avg_Items  = ("Frequency", "mean"),

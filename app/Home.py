@@ -88,7 +88,7 @@ def load_data():
 
     # Fix date columns — use the actual column names in your DB
     df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"], errors="coerce")
-    daily["Date"]     = pd.to_datetime(daily["Date"], errors="coerce")
+    daily["date"]     = pd.to_datetime(daily["date"], errors="coerce")
 
     return df, rfm, products, daily, cat_rev, ot_rev
 
