@@ -5,6 +5,8 @@ sys.path.insert(0, PROJECT)
 from build_db import ensure_db
 ensure_db()
 
+import os, sys
+
 
 
 import os, sys, sqlite3, warnings
