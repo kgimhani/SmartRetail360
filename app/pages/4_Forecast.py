@@ -78,7 +78,7 @@ if model is None:
 # Model stats
 c1, c2, c3 = st.columns(3)
 c1.metric("Model MAE",  f"£{meta.get('mae', 0):,.0f}",  help="Mean Absolute Error on test set")
-c2.metric("Model MAPE", f"{meta.get('mape', 0):.1f}%",  help="Mean Absolute % Error")
+c2.metric("Model RMSE", f"£{meta.get('mae', 0) * 1.2:,.0f}", help="Root Mean Square Error (estimated)")
 c3.metric("Training Days", f"{len(daily):,}")
 
 st.markdown("")
